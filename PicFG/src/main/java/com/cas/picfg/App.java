@@ -43,11 +43,11 @@ public class App {
 
         for (String s : split) {
                   switch (s) {
-                      case "blur":
+                      case "blur":                                 // add Filtres par choix
                              filters.add(new FilterBlur());
                           break;
                       case "grayscale":
-                           filters.add(new FilterGrayscale()) ;
+                           filters.add(new FilterGrayscale()) ;         //  add Filtres par choix
                           break;
 
                   }
