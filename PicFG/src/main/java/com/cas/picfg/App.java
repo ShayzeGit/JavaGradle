@@ -21,8 +21,10 @@ public class App {
 
         final Options options = new Options();
         options.addOption(new Option("f", "filters", true, "Entrez le filtre que vous souhaitez !"));
+        options.addOption(new Option("i", "output", true, "Inserez le fichier d'entré."));
+        options.addOption(new Option("o", "input", true, "Inserez le fichier de sorti."));
 
-         CommandLineParser parser = new DefaultParser();
+        CommandLineParser parser = new DefaultParser();
          CommandLine cmd = null;
 
          try {
@@ -31,31 +33,35 @@ public class App {
             e.printStackTrace();
         }
 
-        String filterchoice = cmd.getOptionValue("blur");
+        String filterchoice = cmd.getOptionValue("grayscale");
 
 
             System.out.println(Arrays.toString(args));
 
             List<Filter> filters = new ArrayList<>();
-            String filterArg = "blur|grayscale";
+            String filterArg = "blur";
 
         String[] split = filterArg.split("\\|"); // blur, grayscale
 
         for (String s : split) {
                   switch (s) {
                       case "blur":                                 // add Filtres par choix
-                             filters.add(new FilterBlur());
-                          break;
-                      case "grayscale":
-                           filters.add(new FilterGrayscale()) ;         //  add Filtres par choix
+                                filters.add(new FilterBlur());
                           break;
 
+                      case "grayscale":
+                                filters.add(new FilterGrayscale()) ;         //  add Filtres par choix
+                          break;
+
+                      case "Dilate":
+                                filters.add(new FilterDilate());         // add Filtres par choix
+                          break;
                   }
 
         }
 
 
-     Mat image = imread("imgs/inspi.jpg");
+     Mat image = imread("imgs/Mouaite.jpg");
 
      for (Filter f : filters) {
          image = f.process(image);
@@ -64,9 +70,13 @@ public class App {
      //FilterBlur filterBlur = new FilterBlur();
      // image = filterBlur.filterBlur(image);
 
+     //FilterDilate filterDilate = new FilterDilate();
+     // image = filterDilate.filterDilate(image);
+
      // FilterGrayscale f = new FilterGrayscale();
+
      // image = f.filterGrayscale(image);
-     imwrite("imgsoutput/inspi_new.jpg", image);
+     imwrite("imgsoutput/Mouaite_new.jpg", image);
 
     }
 }
