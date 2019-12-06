@@ -8,7 +8,7 @@ import static org.bytedeco.opencv.global.opencv_imgproc.GaussianBlur;
 public class FilterBlur extends Filter {
     @Override
     public Mat process(Mat image) {
-        int size = 21;
+        int size = 51;
         Mat result = image.clone();
         GaussianBlur(image, result, new Size(size, size), 0);
         return result;

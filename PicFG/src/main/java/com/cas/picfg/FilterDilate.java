@@ -7,7 +7,7 @@ import org.opencv.imgproc.Imgproc;
 import static org.bytedeco.opencv.global.opencv_imgproc.dilate;
 import static org.bytedeco.opencv.global.opencv_imgproc.getStructuringElement;
 
-public class FilterDilate  extends Filter {
+public class FilterDilate extends Filter {
     @Override
     public Mat process(Mat image) {
         int size = 8;
